@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js"></script>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      #nav{
+        width: 600px;
+        height: 100%;
+        border: 1px solid #000;
+        text-align: center;
+        line-height: 50px;
+        float: left;
+        cursor: pointer;
+      }
+      .on{
+        background: #f00;
+        color: white;
+      }
+      ul{
+        list-style: none;
+      }
+      .menu{
+        width: 600px;
+        height: 500px;
+        text-align: center;
+        line-height: 500px;
+        font-size: 50px;
+        border: 1px solid #000;
+      }
+      .list{
+        width: 600px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ul class="list">
+        <li v-for="aaa in menus" id="nav" :class="{on:isSelect==1}" @click="tab(1)" v-text="aaa.title"></li>
+      </ul>
+      <ul>
+        <li v-for="aaa in menus" class="menu" v-show="isSelect==1" v-text="aaa.menu"></li>
+      </ul>
+    </div>
+    <script>
+      var app = new Vue({
+        el:"#app",
+        data:{
+          isSelect:1,
+          menus:[
+            {
+              title:"选项一",
+              menu:"内容一"
+            },
+            {
+              title:"选项二",
+              menu:"内容二"
+            },
+            {
+              title:"选项三",
+              menu:"内容三"
+            },
+            {
+              title:"选项四",
+              menu:"内容四"
+            }
+          ]
+        },
+        methods:{
+          tab:function(index){
+            this.isSelect = index;
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
