@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{newMessage}}</h2>
+      <h3>{{message}}</h3>
+      <h4>{{arr1}}</h4>
+    </div>
+    <script>
+      var app = new Vue({
+        el:"#app",
+        data:{
+          message:"abcdefg",
+          arr:[11,14,5,34,787,3,13,4,6]
+        },
+        computed:{
+          newMessage:function(){
+            return this.message.split("").reverse().join("");
+          },
+          arr1:function(){
+            return this.arr.sort(function(a,b){
+              return a-b;
+            })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

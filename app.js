@@ -4,7 +4,20 @@ var app = new Vue({
   data:{
     addInp:"",
     amendInp:"",
-    listItems:[]
+    listItems:[],
+    beforeEdit:""
+  },
+  computed:{
+    num:function(){
+      return this.listItems.filter(function(item){
+        return !item.isCompleted
+      }).length;
+    },
+    nd:function(){
+      return this.listItems.filter(function(item){
+        return !item.isCompleted
+      });
+    }
   },
   methods:{
     //添加列表
@@ -17,9 +30,17 @@ var app = new Vue({
     },
     dbclick:function(item){
       item.isclick=true;
+      this.beforeEdit=item.title;
     },
     amend:function(item){
       item.isclick=false;
+    },
+    goback:function(item){
+      item.title=this.beforeEdit;
+      item.isclick=false;
+    },
+    ndjob:function(){
+      
     }
   }
 })

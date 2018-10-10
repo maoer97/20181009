@@ -18,10 +18,10 @@
     <h3 class="big-title">添加任务：</h3>
     <input placeholder="例如：吃饭睡觉打豆豆；    提示：+回车即可添加任务" class="task-input" type="text" @keydown.enter="add" v-model="addInp"/>
     <ul class="task-count">
-      <li>2个任务未完成</li>
+      <li>{{num}}个任务未完成</li>
       <li class="action">
         <a class="active" href="#">所有任务</a>
-        <a href="#">未完成的任务</a>
+        <a href="#" @click="ndjob">未完成的任务</a>
         <a href="#">完成的任务</a>
       </li>
     </ul>
@@ -33,10 +33,10 @@
         <li class="todo" v-for="(item,index) in listItems" :class="{completed:item.isCompleted,editing:item.isclick}" @dblclick="dbclick(item)">
           <div class="view">
             <input class="toggle" type="checkbox" v-model="item.isCompleted" />
-            <label>{{item.title}}</label>
+            <label class="lab">{{item.title}}</label>
             <button class="destroy" @click="del(index)"></button>
           </div>
-          <input class="edit" @keydown.enter="amend(item)" v-model="item.title" type="text" />
+          <input class="edit" @keydown.enter="amend(item)" @blur="amend(item)" v-model="item.title" type="text" @keydown.esc="goback(item)"/>
         </li>
         <!-- <li class="todo">
           <div class="view">
